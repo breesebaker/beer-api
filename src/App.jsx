@@ -3,7 +3,7 @@ import Container from "./components/CardContainer/Container";
 import { useState } from "react";
 
 const App = (props) => {
-  const [searchResults, setSearchResults] = useState([]);
+  const [searchResults, setSearchResults] = useState([props]);
   const [showCard, setShowCard] = useState(false);
 
   const handleChange = (event) => {
@@ -22,7 +22,7 @@ const App = (props) => {
   };
 
   const getCardList = () => {
-    fetch(`https://api.punkapi.com/v2/beers`)
+    fetch(`https://api.punkapi.com/v2/beers?&per_page=80`)
       .then((data) => {
         return data.json();
       })
@@ -63,7 +63,7 @@ const App = (props) => {
 
   return (
     <>
-      <div className="landing-page">
+      <div className="homepage">
         <NavBar searchResults={searchResults} handleChange={handleChange} />
         <Container
           showCard={showCard}
